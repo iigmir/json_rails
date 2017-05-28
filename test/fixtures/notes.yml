@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  content: MyText
+  planday: 2017-05-29
+  newnum: 1
+
+two:
+  title: MyString
+  content: MyText
+  planday: 2017-05-29
+  newnum: 1
