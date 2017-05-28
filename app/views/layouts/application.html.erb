@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Json</title>
+    <meta charset="UTF-8"/>
+    <title>JSON test</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+    /* Do NOT add <style> tag in yield because styles are inside in element. */
+    <%= yield :inpage_css %>
+    </style>
   </head>
-
   <body>
+    <div id="app">
     <%= yield %>
+    </div>
+    <%#= Put JS at end will faster %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script>
+    /* Do NOT add <script> tag in yield because script are inside in element. */
+    <%= yield :inpage_js %>
+    </script>
   </body>
 </html>
