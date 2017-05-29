@@ -5,8 +5,11 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @notes = Note.all
+    respond_to :html, :json
+    # @json_notes = Note.all
+    # render json: @json_notes
   end
-
+  
   # GET /notes/1
   # GET /notes/1.json
   def show

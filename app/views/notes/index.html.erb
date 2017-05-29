@@ -26,31 +26,37 @@
 
 <%= link_to 'New Note', new_note_path %>
 
+<div> {{ items }} </div>
+
 <% content_for :inpage_js do %>
-  // console.log("Hello");
-  /*
-  var datas = [
-<% @notes.each do |note| %>
-  {
-    "title"   : "<%= note.title %>",
-    "content" : "<%= note.content %>",
-    "plandate": "<%= note.planday %>",
-    "number"  : "<%= note.newnum %>"  },
-<% end %>
-]
-*/
+var fff = [];
 var app = new Vue
 ({
     el: '#app',
     data:
     {
         message: 'Hello Vue!',
-        items:
-        [
-            { message: 'Foo' },
-            { message: 'Bar' },
-            { message: '2000' }
-        ]
+        items: []
+    },
+    mounted: function () 
+    {
+        var self = this;
+        $.ajax
+        ({
+            url: "notes.json",
+            cache: false,
+            dataType:"json",
+            method: 'GET',
+            success: function (data) 
+            {
+                console.log("Success");
+                self.items=data;
+                fff = data;
+                console.log(self.items);
+            },
+            error: function (error) { alert("Error"); }
+        });
     }
 });
+
 <% end %>
