@@ -1,28 +1,31 @@
 <% content_for :inpage_css do %>
 .container{ max-width:1200px;margin:0 auto; }
-  /* h1 { color:red; } */
 <% end %>
+<!--
+-->
 <p id="notice" class="title"><%= notice %></p>
 <h1 class="text-center"> {{ message }} </h1>
-<!--
-<ul v-for="item in items">  <li> {{ item.message }} </li>  </ul>
--->
+<%= link_to 'New Note', new_note_path %>
+
 <div class="container">
+     <div class="row">
+         <div class="col col-4">
+             // Context
+         </div>
+     </div>
      <div class="col col-4" v-for="note in items">
          <h2> Title: {{ note.title }} </h2>
          <p> Content: {{ note.content }} </p>
          <p> Plan date: {{ note.planday }} </p>
          <p> Number: {{ note.newnum }} </p>
          <ul>
-             <li> <a href="/notes/{{ note.id }}"> Show </a> </li>
-             <li> <a href="/notes/{{ note.id }}/edit"> edit </a> </li>
-             <li> <a data-confirm="Are you sure?" class="error" rel="nofollow" data-method="delete" href="/notes/{{ note.id }}">Delete (DANGER!)</a> </li>
+             <li> <a v-bind:href="'/notes/'+note.id"> Show </a> </li>
+             <li> <a v-bind:href="'/notes/'+note.id+'/edit'"> edit </a> </li>
+             <li> <a data-confirm="Are you sure?" class="error" rel="nofollow" data-method="delete" v-bind:href="'/notes/'+note.id">Delete (DANGER!)</a> </li>
              <li> Number of note now: {{ note.id }} </li>
          </ul>
      </div>
 </div>
-
-<%= link_to 'New Note', new_note_path %>
 
 <% content_for :inpage_js do %>
 var app = new Vue
@@ -45,7 +48,7 @@ var app = new Vue
             success: function (data) 
             {
                 self.items=data;
-                console.log(self.items);
+                // console.log(self.items);
             },
             error: function (error) { alert("Error"); }
         });
