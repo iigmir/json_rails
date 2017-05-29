@@ -8,28 +8,23 @@
 <ul v-for="item in items">  <li> {{ item.message }} </li>  </ul>
 -->
 <div class="container">
-<% @notes.each do |note| %>
-     <div class="col col-4">
-         <h2> Title: <%= note.title %> </h2>
-         <p> Content: <%= note.content %> </p>
-         <p> Plan date: <%= note.planday %> </p>
-         <p> Number: <%= note.newnum %> </p>
+     <div class="col col-4" v-for="note in items">
+         <h2> Title: {{ note.title }} </h2>
+         <p> Content: {{ note.content }} </p>
+         <p> Plan date: {{ note.planday }} </p>
+         <p> Number: {{ note.newnum }} </p>
          <ul>
-             <li> <a href="/notes/<%= note.id %>"> SHow </a> </li>
-             <li> <a href="/notes/<%= note.id %>/edit"> edit </a> </li>
-             <li> <a data-confirm="Are you sure?" class="error" rel="nofollow" data-method="delete" href="/notes/<%= note.id %>">Delete (DANGER!)</a> </li>
-             <li> Number of note now: <%= note.id %> </li>
+             <li> <a href="/notes/{{ note.id }}"> Show </a> </li>
+             <li> <a href="/notes/{{ note.id }}/edit"> edit </a> </li>
+             <li> <a data-confirm="Are you sure?" class="error" rel="nofollow" data-method="delete" href="/notes/{{ note.id }}">Delete (DANGER!)</a> </li>
+             <li> Number of note now: {{ note.id }} </li>
          </ul>
      </div>
-<% end %>
 </div>
 
 <%= link_to 'New Note', new_note_path %>
 
-<div> {{ items }} </div>
-
 <% content_for :inpage_js do %>
-var fff = [];
 var app = new Vue
 ({
     el: '#app',
@@ -49,14 +44,11 @@ var app = new Vue
             method: 'GET',
             success: function (data) 
             {
-                console.log("Success");
                 self.items=data;
-                fff = data;
                 console.log(self.items);
             },
             error: function (error) { alert("Error"); }
         });
     }
 });
-
 <% end %>
