@@ -1,51 +1,56 @@
 <% content_for :inpage_css do %>
-h1 { color:red; }
+.container{ max-width:1200px;margin:0 auto; }
+  /* h1 { color:red; } */
 <% end %>
-<p id="notice"><%= notice %></p>
-<h1> {{ message }} </h1>
-<ul v-for="item in items">
-  <li> {{ item.message }} </li>
-</ul>
+<p id="notice" class="title"><%= notice %></p>
+<h1 class="text-center"> {{ message }} </h1>
+<!--
+<ul v-for="item in items">  <li> {{ item.message }} </li>  </ul>
+-->
+<div class="container">
+<% @notes.each do |note| %>
+     <div class="col col-4">
+         <h2> Title: <%= note.title %> </h2>
+         <p> Content: <%= note.content %> </p>
+         <p> Plan date: <%= note.planday %> </p>
+         <p> Number: <%= note.newnum %> </p>
+         <ul>
+             <li> <%= link_to 'Show', note %> </li>
+             <li> <%= link_to 'Edit', edit_note_path(note) %> </li>
+             <li> <%= link_to 'Delete (DANGER!)', note, method: :delete, data: { confirm: 'Are you sure?' }, class:"error" %> </li>
+             <li> Number of note now: <%= note.id %> </li>
+         </ul>
+     </div>
+<% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Planday</th>
-      <th>Newnum</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @notes.each do |note| %>
-      <tr>
-        <td><%= note.title %></td>
-        <td><%= note.content %></td>
-        <td><%= note.planday %></td>
-        <td><%= note.newnum %></td>
-        <td><%= link_to 'Show', note %></td>
-        <td><%= link_to 'Edit', edit_note_path(note) %></td>
-        <td><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
 <%= link_to 'New Note', new_note_path %>
 
 <% content_for :inpage_js do %>
-console.log("Hello");
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!',
-    items:
-    [
-      { message: 'Foo' },
-      { message: 'Bar' },
-      { message: '2000' }
-    ]
-  }
+  // console.log("Hello");
+  /*
+  var datas = [
+<% @notes.each do |note| %>
+  {
+    "title"   : "<%= note.title %>",
+    "content" : "<%= note.content %>",
+    "plandate": "<%= note.planday %>",
+    "number"  : "<%= note.newnum %>"  },
+<% end %>
+]
+*/
+var app = new Vue
+({
+    el: '#app',
+    data:
+    {
+        message: 'Hello Vue!',
+        items:
+        [
+            { message: 'Foo' },
+            { message: 'Bar' },
+            { message: '2000' }
+        ]
+    }
 });
 <% end %>
