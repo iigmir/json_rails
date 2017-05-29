@@ -15,9 +15,9 @@
          <p> Plan date: <%= note.planday %> </p>
          <p> Number: <%= note.newnum %> </p>
          <ul>
-             <li> <%= link_to 'Show', note %> </li>
-             <li> <%= link_to 'Edit', edit_note_path(note) %> </li>
-             <li> <%= link_to 'Delete (DANGER!)', note, method: :delete, data: { confirm: 'Are you sure?' }, class:"error" %> </li>
+             <li> <a href="/notes/<%= note.id %>"> SHow </a> </li>
+             <li> <a href="/notes/<%= note.id %>/edit"> edit </a> </li>
+             <li> <a data-confirm="Are you sure?" class="error" rel="nofollow" data-method="delete" href="/notes/<%= note.id %>">Delete (DANGER!)</a> </li>
              <li> Number of note now: <%= note.id %> </li>
          </ul>
      </div>
