@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <style>
     /* Do NOT add <style> tag in yield because styles are inside in element. */
     <%= yield :inpage_css %>
@@ -17,7 +17,7 @@
     <%= yield %>
     </div>
     <%#= Put JS at end will faster %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
     <script>
     /* Do NOT add <script> tag in yield because script are inside in element. */
     <%= yield :inpage_js %>

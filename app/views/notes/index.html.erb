@@ -1,8 +1,7 @@
 <% content_for :inpage_css do %>
 .container{ max-width:1200px;margin:0 auto; }
 <% end %>
-<!--
--->
+
 <p id="notice" class="title"><%= notice %></p>
 <h1 class="text-center"> {{ message }} </h1>
 <p class="text-center"><%= link_to 'New Note', new_note_path %></p>
@@ -14,15 +13,14 @@
          </div>
      </div>
      <div class="col col-4" v-for="note in items">
-         <h2> Title: {{ note.title }} </h2>
+         <h2> <a v-bind:href="'/notes/'+note.id">Title: {{ note.title }}</a> </h2>
          <p> Content: {{ note.content }} </p>
          <p> Plan date: {{ note.planday }} </p>
          <p> Number: {{ note.newnum }} </p>
          <ul>
-             <li> <a v-bind:href="'/notes/'+note.id"> Show </a> </li>
              <li> <a v-bind:href="'/notes/'+note.id+'/edit'"> edit </a> </li>
              <li> <a data-confirm="Are you sure?" class="error" rel="nofollow" data-method="delete" v-bind:href="'/notes/'+note.id">Delete (DANGER!)</a> </li>
-             <li> Number of note now: {{ note.id }} </li>
+             <li hidden> Number of note now: {{ note.id }} </li>
          </ul>
      </div>
 </div>
